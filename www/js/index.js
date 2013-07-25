@@ -19,7 +19,7 @@ var app = {
 	},
 	// Update DOM on a Received Event
 	receivedEvent: function(id) {
-		$(function() {
+		Zepto(function($){
 			$('.splash').hide();
 			$('#hello').show();
 		});
