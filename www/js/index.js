@@ -22,6 +22,32 @@ var app = {
 		Zepto(function($){
 			$('.splash').hide();
 			$('#hello').show();
+			$('.card').swipeLeft(function() {
+				var next = $(this).next('.card').filter('.card');
+				if (next.length <= 0) return;
+				console.log(next);
+				var w = $(window).width();
+				$(this).animate({
+					left: -w, right: w
+				}, {
+					complete: function() {
+						$(this).hide();
+					}
+				});
+				next.css({ left: w, right: -w }).show().animate({ left: 0, right: 0 });
+			}).swipeRight(function() {
+				var next = $(this).prev('.card').filter('.card');
+				if (next.length <= 0) return;
+				var w = $(window).width();
+				$(this).animate({
+					left: w, right: -w
+				}, {
+					complete: function() {
+						$(this).hide();
+					}
+				});
+				next.css({ left: -w, right: w }).show().animate({ left: 0, right: 0 });
+			});
 		});
 	}
 };
