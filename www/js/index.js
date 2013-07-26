@@ -22,18 +22,18 @@ var app = {
 		Zepto(function($){
 			$('.splash').hide();
 			$('#hello').show();
-			$('.card').swipeLeft(function() {
+			$('.card').click(function() {
 				var next = $(this).next('.card').filter('.card');
-				if (next.length <= 0) return;
+				if (next.length > 0) {
+					$(this).addClass('left').removeClass('show');
+					next.removeClass('right').addClass('show');
+				} else {
+					next = $(this).prev('.card').filter('.card');
+					if (next.length <= 0) return;
 
-				$(this).addClass('left').removeClass('show');
-				next.removeClass('right').addClass('show');
-			}).swipeRight(function() {
-				var next = $(this).prev('.card').filter('.card');
-				if (next.length <= 0) return;
-
-				$(this).addClass('right').removeClass('show');
-				next.removeClass('left').addClass('show');
+					$(this).addClass('right').removeClass('show');
+					next.removeClass('left').addClass('show');
+				}
 			});
 		});
 	}
