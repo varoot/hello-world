@@ -25,28 +25,15 @@ var app = {
 			$('.card').swipeLeft(function() {
 				var next = $(this).next('.card').filter('.card');
 				if (next.length <= 0) return;
-				console.log(next);
-				var w = $(window).width();
-				$(this).animate({
-					left: -w, right: w
-				}, {
-					complete: function() {
-						$(this).hide();
-					}
-				});
-				next.css({ left: w, right: -w }).show().animate({ left: 0, right: 0 });
+
+				$(this).addClass('left').removeClass('show');
+				next.removeClass('right').addClass('show');
 			}).swipeRight(function() {
 				var next = $(this).prev('.card').filter('.card');
 				if (next.length <= 0) return;
-				var w = $(window).width();
-				$(this).animate({
-					left: w, right: -w
-				}, {
-					complete: function() {
-						$(this).hide();
-					}
-				});
-				next.css({ left: -w, right: w }).show().animate({ left: 0, right: 0 });
+
+				$(this).addClass('right').removeClass('show');
+				next.removeClass('left').addClass('show');
 			});
 		});
 	}
